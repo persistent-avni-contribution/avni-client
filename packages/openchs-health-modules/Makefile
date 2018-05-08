@@ -63,7 +63,9 @@ dev_deploy_metadata: ## Upload metadata to server
 	$(call upload,concepts,@health_modules/outpatient/metadata/concepts.json)
 	$(call upload,forms,@health_modules/outpatient/metadata/encounterForm.json)
 
-	$(call upload,concepts,@health_modules/mother/metadata/motherConcepts.json)
+	@node health_modules/mother/metadata/motherConcepts.json.js > .tmp/motherConcepts.json
+	$(call upload,concepts,@.tmp/motherConcepts.json)
+
 	$(call upload,programs,@health_modules/mother/metadata/motherProgram.json)
 	$(call upload,forms,@health_modules/mother/metadata/motherProgramEnrolmentForm.json)
 	$(call upload,forms,@health_modules/mother/metadata/motherANCForm.json)
