@@ -106,10 +106,20 @@ release_clean:
 	mkdir -p packages/openchs-android/android/app/build/generated/assets/react/release
 	rm -rf packages/openchs-android/default.realm.*
 
-create_apk:
-	cd packages/openchs-android/android; GRADLE_OPTS="$(if $(GRADLE_OPTS),$(GRADLE_OPTS),-Xmx1024m -Xms1024m)" ./gradlew assembleRelease --stacktrace --w
+create_bundle:
+	cd packages/openchs-android; \
+		react-native bundle \
+			--platform android \
+			--dev false \
+			--entry-file index.android.js \
+			--bundle-output android/app/build/generated/assets/react/release/index.android.bundle \
+			--assets-dest android/app/build/generated/res/react/release \
+			--sourcemap-output android/app/build/generated/sourcemap.js
 
-release: release_clean create_apk
+create_apk:
+	cd packages/openchs-android/android; GRADLE_OPTS="$(if $(GRADLE_OPTS),$(GRADLE_OPTS),-Xmx1024m -Xms1024m)" ./gradlew -x bundleReleaseJsAndAssets assembleRelease --stacktrace --w
+
+release: release_clean create_bundle create_apk
 
 release_dev: ##
 	$(call _setup_hosts)
