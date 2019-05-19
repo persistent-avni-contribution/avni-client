@@ -117,7 +117,7 @@ create_bundle:
 			--sourcemap-output android/app/build/generated/sourcemap.js
 
 create_apk:
-	cd packages/openchs-android/android; GRADLE_OPTS="$(if $(GRADLE_OPTS),$(GRADLE_OPTS),-Xmx1024m -Xms1024m)" ./gradlew -x bundleReleaseJsAndAssets assembleRelease --stacktrace --w
+	cd packages/openchs-android/android; GRADLE_OPTS="$(if $(GRADLE_OPTS),$(GRADLE_OPTS),-Xmx4g -Xms4g)" ./gradlew -x bundleReleaseJsAndAssets assembleRelease --stacktrace --w
 
 release: release_clean create_bundle create_apk
 
