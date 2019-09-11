@@ -28,6 +28,10 @@ class DatePicker extends AbstractComponent {
         this.showTimePicker = this.showTimePicker.bind(this);
     }
 
+    updateVal = this.mark(this.props.hookName, (val) => {
+        this.props.actionObject.value = val;
+        return this.dispatchAction(this.props.actionName, this.props.actionObject);
+    });
 
     dateDisplay(date) {
         return _.isNil(date)
@@ -44,21 +48,19 @@ class DatePicker extends AbstractComponent {
             if (this.pickTime) {
                 this.showTimePicker(this.props.actionObject.value);
             }
-            this.dispatchAction(this.props.actionName, this.props.actionObject);
+            this.updateVal(this.props.actionObject.value);
         }
     }
 
     async showTimePicker(date) {
         const {action, hour, minute} = await TimePickerAndroid.open({});
         if (action !== TimePickerAndroid.dismissedAction) {
-            this.props.actionObject.value = new Date(date.getFullYear(), date.getMonth(), date.getDate(), hour, minute, 0, 0);
-            this.dispatchAction(this.props.actionName, this.props.actionObject);
+            this.updateVal(new Date(date.getFullYear(), date.getMonth(), date.getDate(), hour, minute, 0, 0));
         }
     }
 
     removeDate() {
-        this.props.actionObject.value = null;
-        this.dispatchAction(this.props.actionName, this.props.actionObject);
+        this.updateVal(null);
     }
 
     renderRemoveButton() {

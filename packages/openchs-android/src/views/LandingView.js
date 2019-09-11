@@ -23,7 +23,6 @@ import AbstractComponent from "../framework/view/AbstractComponent";
 import {Icon as NBIcon} from "native-base";
 import MCIIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
-
 @Path('/landingView')
 class LandingView extends AbstractComponent {
     static propTypes = {
@@ -50,12 +49,13 @@ class LandingView extends AbstractComponent {
 
 
     renderBottomBarIcons(icon, menuMessageKey, pressHandler, isSelected, idx) {
+        const onPress = this.mark(`${menuMessageKey}Button`, pressHandler);
         return _.isNil(menuMessageKey) ? null :
             (<View key={idx} style={[{
                 alignItems: 'center',
                 flexDirection: 'column',
             }, isSelected && {borderBottomWidth: 2, borderColor: Colors.iconSelectedColor, marginBottom: 1}]}>
-                <TouchableOpacity style={{height: 35, width: 35}} onPress={pressHandler}>
+                <TouchableOpacity style={{height: 35, width: 35}} onPress={onPress}>
                     {icon}
                 </TouchableOpacity>
                 <Text style={{

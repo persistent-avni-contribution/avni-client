@@ -116,7 +116,7 @@ export class ProgramEnrolmentActions {
                 .addDecisions(newState.enrolment.programExitObservations, action.decisions.enrolmentDecisions);
             service.exit(newState.enrolment);
         }
-        action.cb(newState.enrolment,true);
+        setTimeout(()=>action.cb(newState.enrolment,true),0);
         return newState;
     }
 }

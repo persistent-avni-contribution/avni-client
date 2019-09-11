@@ -17,7 +17,7 @@ class GeolocationFormElement extends AbstractComponent {
         actionName: PropTypes.string.isRequired,
         errorActionName: PropTypes.string.isRequired,
         location: PropTypes.object,
-        editing: PropTypes.bool.isRequired,
+        editing: PropTypes.bool,
         validationResult: PropTypes.object
     };
 

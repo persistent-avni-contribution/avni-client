@@ -1,5 +1,4 @@
 import AbstractComponent from "../framework/view/AbstractComponent";
-import Path from "../framework/routing/Path";
 import General from "../utility/General";
 import {StyleSheet, Text, TouchableNativeFeedback, View} from "react-native";
 import React from "react";
@@ -16,14 +15,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fonts from "./primitives/Fonts";
 import FormMappingService from "../service/FormMappingService";
 
-
-@Path('/registerView')
 class RegisterView extends AbstractComponent {
-
-
-    viewName() {
-        return "RegisterView";
-    }
 
     componentWillMount() {
         super.componentWillMount();
@@ -55,6 +47,7 @@ class RegisterView extends AbstractComponent {
     }
 
     renderButton(onPress, buttonColor, text, textColor, index) {
+        onPress = this.mark(`Button.${text.trim()}`, onPress);
         return (
             <View key={index}>
                 <TouchableNativeFeedback onPress={() => {

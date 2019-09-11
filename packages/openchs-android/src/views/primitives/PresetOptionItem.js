@@ -40,19 +40,21 @@ class PresetOptionItem extends AbstractComponent {
     getSelectComponent() {
         if (this.props.multiSelect)
             return (<CheckBox  checked={this.props.checked}
-                              onPress={() => this.props.onPress()}/>);
+                              onPress={this.onPress}/>);
         else
             return (<Radio  selected={this.props.checked}
-                           onPress={() => this.props.onPress()} color={Colors.AccentColor}/>);
+                           onPress={this.onPress} color={Colors.AccentColor}/>);
     }
 
-    shouldComponentUpdate(nextProps) {
-        return (
+    shouldComponentUpdate(nextProps, nextState) {
+        return super.shouldComponentUpdate(nextProps, nextState) && (
             this.props.checked !== nextProps.checked ||
             _.isNil(this.props.validationResult) !==
             _.isNil(nextProps.validationResult)
         );
     }
+
+    onPress = this.mark(`${this.props.parentKey}.${this.props.displayText}`, this.props.onPress);
 
     render() {
         const marginLeft = this.props.multiSelect ? 16 : 8;
@@ -73,7 +75,7 @@ class PresetOptionItem extends AbstractComponent {
         };
         const ToRender = this.props.chunked ? chunked : single;
         return (
-            <TouchableOpacity onPress={() => this.props.onPress()} style={ToRender.container}>
+            <TouchableOpacity onPress={this.onPress} style={ToRender.container}>
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', alignSelf: 'flex-start'}}>
                     <View>
                         {this.getSelectComponent()}

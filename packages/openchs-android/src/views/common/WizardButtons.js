@@ -37,7 +37,7 @@ class WizardButtons extends AbstractComponent {
                 {nextAndMore.visible ?
                     <Button primary
                             style={{flex: 1, justifyContent: "center"}}
-                            onPress={() => nextAndMore.func()}>
+                            onPress={this.mark(`wizard.${this.props.page}.MORE`, nextAndMore.func)}>
                         <Text>{nextAndMore.label}</Text></Button>
                     : null
                 }
@@ -51,12 +51,12 @@ class WizardButtons extends AbstractComponent {
                                 backgroundColor: Colors.SecondaryActionButtonColor,
                                 justifyContent: "center"
                             }}
-                            onPress={() => previousButton.func()}><Text style={{color: '#212121'}}>{previousButton.label}</Text></Button> :
+                            onPress={this.mark(`wizard.${this.props.page}.PREV`, previousButton.func)}><Text style={{color: '#212121'}}>{previousButton.label}</Text></Button> :
                     <View style={{flex: 0.5}}/>}
                 {nextButton.visible ?
                     <Button primary
                             style={{flex: 0.5, marginLeft: 8, justifyContent: "center"}}
-                            onPress={() => nextButton.func()}><Text>{nextButton.label}</Text></Button> : <View style={{flex: 0.5}}/>}
+                            onPress={this.mark(`wizard.${this.props.page}.NEXT`, nextButton.func)}><Text>{nextButton.label}</Text></Button> : <View style={{flex: 0.5}}/>}
             </View>
         </View>);
     }

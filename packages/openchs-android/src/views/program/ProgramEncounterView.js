@@ -85,7 +85,7 @@ class ProgramEncounterView extends AbstractComponent {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return !_.isNil(nextState.programEncounter);
+        return super.shouldComponentUpdate(nextProps, nextState) && !_.isNil(nextState.programEncounter);
     }
 
     displayMessage(message) {
@@ -131,7 +131,8 @@ class ProgramEncounterView extends AbstractComponent {
                             formElementsUserState={this.state.formElementsUserState}
                             dataEntryDate={this.state.programEncounter.encounterDateTime}
                         />
-                        <WizardButtons previous={{
+                        <WizardButtons page={this.state.wizard.currentPage}
+                            previous={{
                             func: () => this.previous(),
                             visible: !this.state.wizard.isFirstPage(),
                             label: this.I18n.t('previous')

@@ -210,6 +210,7 @@ class FilterView extends AbstractComponent {
                             <View style={{flexDirection: "column", justifyContent: "flex-start"}}>
                                 <Text style={{fontSize: 15, color: Styles.greyText}}>{this.I18n.t("date")}</Text>
                                 <DatePicker
+                                    hookName={'filter'}
                                     nonRemovable={true}
                                     actionName={FilterActionNames.ON_DATE}
                                     actionObject={this.state.filterDate}

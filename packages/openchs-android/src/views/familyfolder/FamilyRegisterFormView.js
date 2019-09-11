@@ -39,7 +39,7 @@ class FamilyRegisterFormView extends AbstractComponent {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return !nextState.wizard.isNonFormPage()
+        return super.shouldComponentUpdate(nextProps, nextState) &&  !nextState.wizard.isNonFormPage()
     }
 
     render() {

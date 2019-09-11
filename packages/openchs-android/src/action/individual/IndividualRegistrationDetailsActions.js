@@ -30,7 +30,7 @@ class IndividualRegistrationDetailsActions {
     static voidUnVoidIndividual(state, action, beans) {
         const individualService = beans.get(IndividualService);
         individualService.voidUnVoidIndividual(action.individualUUID, action.setVoided);
-        action.cb();
+        setTimeout(()=>action.cb(),0);
         return IndividualRegistrationDetailsActions.onLoad(state, action, beans);
     }
 

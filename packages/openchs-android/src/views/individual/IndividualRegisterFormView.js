@@ -53,7 +53,7 @@ class IndividualRegisterFormView extends AbstractComponent {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return !nextState.wizard.isNonFormPage();
+        return super.shouldComponentUpdate(nextProps, nextState) &&  !nextState.wizard.isNonFormPage();
     }
 
     render() {
@@ -73,7 +73,9 @@ class IndividualRegisterFormView extends AbstractComponent {
                                           formElementsUserState={this.state.formElementsUserState}
                                           dataEntryDate={this.state.individual.registrationDate}
                         />
-                        <WizardButtons previous={{func: () => this.previous(), label: this.I18n.t('previous')}}
+                        {console.log('this.state.wizard.currentPage', this.state.wizard.currentPage)}
+                        <WizardButtons page={this.state.wizard.currentPage}
+                                       previous={{func: () => this.previous(), label: this.I18n.t('previous')}}
                                        next={{
                                            func: () => IndividualRegisterViewsMixin.next(this),
                                            label: this.I18n.t('next')

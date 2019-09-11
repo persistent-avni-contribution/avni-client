@@ -49,7 +49,8 @@ class RadioGroup extends AbstractComponent {
         return _.chunk(this.props.labelValuePairs, 2).map((rlvPair, idx) =>
             <View style={{flexDirection: "row", justifyContent: "space-between"}} key={idx}>
                 {rlvPair.map((rlv) =>
-                    <PresetOptionItem displayText={this.I18n.t(rlv.label)}
+                    <PresetOptionItem parentKey={this.I18n.t(this.props.labelKey)}
+                                      displayText={this.I18n.t(rlv.label)}
                                       checked={this.props.selectionFn(rlv.value)}
                                       abnormal={rlv.abnormal}
                                       multiSelect={this.props.multiSelect}
@@ -65,7 +66,8 @@ class RadioGroup extends AbstractComponent {
 
     renderOptions() {
         return this.props.labelValuePairs.map(radioLabelValue =>
-            <PresetOptionItem displayText={this.I18n.t(radioLabelValue.label)}
+            <PresetOptionItem parentKey={this.I18n.t(this.props.labelKey)}
+                              displayText={this.I18n.t(radioLabelValue.label)}
                               checked={this.props.selectionFn(radioLabelValue.value)}
                               multiSelect={this.props.multiSelect}
                               validationResult={this.props.validationError}

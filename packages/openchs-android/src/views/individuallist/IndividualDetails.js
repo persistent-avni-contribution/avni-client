@@ -151,14 +151,14 @@ class IndividualDetails extends AbstractComponent {
                     }}
                 >
                     <TouchableNativeFeedback
-                        onPress={() =>
+                        onPress={this.mark(`${this.props.individualWithMetadata.key}`, () =>
                             CHSNavigator.navigateToProgramEnrolmentDashboardView(
                                 this,
                                 this.props.individualWithMetadata.individual.uuid,
                                 "",
                                 false,
                                 this.props.backFunction
-                            )
+                            ))
                         }
                         background={TouchableNativeFeedback.SelectableBackground()}
                     >

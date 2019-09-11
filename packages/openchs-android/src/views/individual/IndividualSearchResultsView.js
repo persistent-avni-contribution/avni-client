@@ -70,6 +70,7 @@ class IndividualSearchResultsView extends AbstractComponent {
         General.logDebug(this.viewName(), 'render');
         const dataSource = new ListView.DataSource({rowHasChanged: () => false}).cloneWithRows(this.props.searchResults);
         const width = Dimensions.get('window').width;
+        let i=0;
 
         return (
             <CHSContainer theme={{iconFamily: 'MaterialIcons'}} style={{backgroundColor: Colors.GreyContentBackground}}>
@@ -81,7 +82,7 @@ class IndividualSearchResultsView extends AbstractComponent {
                               dataSource={dataSource}
                               style={{backgroundColor: Colors.cardBackgroundColor}}
                               renderRow={(item) =>
-                                  <TouchableNativeFeedback onPress={() => this.onResultRowPress(item)}
+                                  <TouchableNativeFeedback onPress={this.mark(i++, () => this.onResultRowPress(item))}
                                                            background={this.background()}>
                                       <View style={{
                                           elevation: 2,

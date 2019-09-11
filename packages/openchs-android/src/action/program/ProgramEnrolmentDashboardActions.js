@@ -194,7 +194,7 @@ class ProgramEnrolmentDashboardActions {
                         programName: enrolment.program.name,
                     })
                 ]));
-        action.cb(enrolment, workLists);
+        setTimeout(()=>action.cb(enrolment, workLists),0);
         return state;
     }
 
@@ -209,7 +209,7 @@ class ProgramEnrolmentDashboardActions {
                         programName: enrolment.program.name,
                     })
                 ]));
-        action.cb(enrolment, workLists);
+        setTimeout(()=>action.cb(enrolment, workLists),0);
         return state;
     }
 
@@ -225,7 +225,7 @@ class ProgramEnrolmentDashboardActions {
                         programName: enrolment.program.name,
                     })
                 ]));
-        action.cb(enrolment, workLists);
+        setTimeout(()=>action.cb(enrolment, workLists),0);
         return state;
     }
 

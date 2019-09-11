@@ -97,7 +97,7 @@ class AbstractDataEntryState {
         }
 
         if (!(_.isNil(action) || _.isNil(action.cb)))
-            action.cb(this);
+            setTimeout(()=>action.cb(this),0);
         return this;
     }
 

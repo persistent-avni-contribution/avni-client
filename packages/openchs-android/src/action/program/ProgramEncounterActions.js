@@ -101,7 +101,7 @@ class ProgramEncounterActions {
 
         service.saveOrUpdate(newState.programEncounter, scheduledVisits);
 
-        action.cb(newState.programEncounter, false);
+        setTimeout(()=>action.cb(newState.programEncounter, false),0);
         return newState;
     }
 

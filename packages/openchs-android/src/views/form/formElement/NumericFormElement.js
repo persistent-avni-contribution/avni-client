@@ -56,6 +56,7 @@ class NumericFormElement extends AbstractFormElement {
         let rangeText = this.rangeText();
         let unitText = this.unitText();
         let labelText = this.label;
+        const onChangeText = this.mark(this.props.element.name, (text) => this.onInputChange(text));
         return (
             <View>
                 <View style={{backgroundColor: '#ffffff', borderStyle: 'dashed', borderRadius: 1}}>
@@ -71,8 +72,8 @@ class NumericFormElement extends AbstractFormElement {
                         <View><TextInput style={[{flex: 1, marginVertical: 0, paddingVertical: 5}, Styles.formBodyText, {color: this.color()}]}
                                          underlineColorAndroid={this.borderColor} keyboardType='numeric'
                                          value={_.toString(this.props.value.getValue())}
-                                         onChangeText={(text) => this.onInputChange(text)}
-                                         onEndEditing={(text) => this.onInputChange(text)}/>
+                                         onChangeText={onChangeText}
+                                         onEndEditing={onChangeText}/>
                             <ValidationErrorMessage validationResult={this.props.validationResult}/></View>
                     }
                 </View>

@@ -37,6 +37,7 @@ class DateOfBirthAndAgeFormElement extends AbstractComponent {
 
     render() {
         const datePickerMode = _.isNil(this.userSettings.datePickerMode) ? 'calendar' : this.userSettings.datePickerMode;
+        const onAgeChange = this.mark('age', (text) => this.dispatchAction(Actions.REGISTRATION_ENTER_AGE, {value: text}));
         return (
             <View style={[this.formRow, {flexDirection: 'column'}]}>
                 <View>
@@ -71,7 +72,7 @@ class DateOfBirthAndAgeFormElement extends AbstractComponent {
                         keyboardType='numeric'
                         underlineColorAndroid={AbstractDataEntryState.hasValidationError(this.props.state, Individual.validationKeys.DOB) ? Colors.ValidationError : Colors.InputBorderNormal}
                         value={_.isNil(this.props.state.age) ? "" : this.props.state.age}
-                        onChangeText={(text) => this.dispatchAction(Actions.REGISTRATION_ENTER_AGE, {value: text})}/>
+                        onChangeText={onAgeChange}/>
                     <View style={{flexDirection: 'column-reverse', marginLeft: DGS.resizeWidth(20)}}>
                         <Radio selected={this.props.state.ageProvidedInYears} color={Colors.AccentColor}
                                onPress={() => this.dispatchAction(Actions.REGISTRATION_ENTER_AGE_PROVIDED_IN_YEARS, {value: true})}/>

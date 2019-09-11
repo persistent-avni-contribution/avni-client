@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 export default function Path(path) {
     return (view) => {
+        view.path = path;
         _.assignIn(view, {component: () => view, path: () => path});
         PathRegistry.register(view);
     };

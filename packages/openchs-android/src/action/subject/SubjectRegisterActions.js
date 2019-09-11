@@ -96,7 +96,7 @@ export class SubjectRegisterActions {
     static onSave(state, action, context) {
         const newState = state.clone();
         context.get(IndividualService).register(newState.subject, action.nextScheduledVisits);
-        action.cb();
+        setTimeout(()=>action.cb(),0);
         return newState;
     }
 }

@@ -50,8 +50,9 @@ class AppHeader extends AbstractComponent {
     }
 
     renderHomeIcon() {
+        const onHomeButtonPress = () => (_.isNil(this.props.iconFunc) ? this.onHome() : this.props.iconFunc());
         return <TouchableNativeFeedback
-            onPress={() => (_.isNil(this.props.iconFunc) ? this.onHome() : this.props.iconFunc())}
+            onPress={this.mark('HomeButton', onHomeButtonPress)}
             background={this.background()}>
             <View style={{
                 flexDirection: 'column',

@@ -75,7 +75,7 @@ class ProgramEncounterCancelActions {
             context.get(EncounterService).saveOrUpdate(newState.programEncounter, action.nextScheduledVisits) :
             context.get(ProgramEncounterService).saveOrUpdate(newState.programEncounter, action.nextScheduledVisits);
 
-        action.cb();
+        setTimeout(()=>action.cb(),0);
         return newState;
     }
 

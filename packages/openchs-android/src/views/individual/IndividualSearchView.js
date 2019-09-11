@@ -106,7 +106,7 @@ class IndividualSearchView extends AbstractComponent {
 
                     <View style={{height: buttonHeight, position: 'absolute', bottom: 0, right: 35}}>
                         <TouchableOpacity activeOpacity={0.5}
-                                          onPress={() => this.searchIndividual()}
+                                          onPress={this.mark('Submit', () => this.searchIndividual())}
                                           style={{
                                               height: 40,
                                               width: 80,

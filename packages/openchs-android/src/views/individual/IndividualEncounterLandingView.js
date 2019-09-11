@@ -54,8 +54,8 @@ class IndividualEncounterLandingView extends AbstractComponent {
         return super.componentWillMount();
     }
 
-    shouldComponentUpdate(nextProps, state) {
-        return !_.isNil(state.encounter) && state.wizard.isFirstPage();
+    shouldComponentUpdate(nextProps, nextState) {
+        return super.shouldComponentUpdate(nextProps, nextState) && !_.isNil(nextState.encounter) && nextState.wizard.isFirstPage();
     }
 
     next() {

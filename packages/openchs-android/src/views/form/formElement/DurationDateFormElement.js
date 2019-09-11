@@ -44,7 +44,7 @@ class DurationDateFormElement extends AbstractFormElement {
                     <View style={{flexDirection: 'row'}}>
                         <Text style={DGS.formElementLabel}>{`${this.I18n.t("enterDate")}: `}</Text>
                         <View style={{paddingHorizontal:5}}>
-                            <DatePicker actionName={this.props.actionName} actionObject={{formElement: this.props.element}} validationResult={this.props.validationResult}
+                            <DatePicker hookName={labelText} actionName={this.props.actionName} actionObject={{formElement: this.props.element}} validationResult={this.props.validationResult}
                                         dateValue={this.props.dateValue.getValue()} />
                         </View>
                     </View>

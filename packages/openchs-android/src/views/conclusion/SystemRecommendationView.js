@@ -149,7 +149,9 @@ class SystemRecommendationView extends AbstractComponent {
                                                  title={this.I18n.t('visitsBeingScheduled')}/>
                             <Observations observations={this.props.observations} form={this.props.form}
                                           title={this.I18n.t('observations')}/>
-                            <WizardButtons previous={{func: () => this.previous(), label: this.I18n.t('previous')}}
+                            {console.log('this.props.onSaveCallback.toString()', this.props.onSaveCallback.toString())}
+                            <WizardButtons page={'LAST'}
+                                           previous={{func: () => this.previous(), label: this.I18n.t('previous')}}
                                            next={{
                                                func: () => this.save(() => this.props.onSaveCallback(this)),
                                                visible: this.props.validationErrors.length === 0,

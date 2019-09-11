@@ -42,7 +42,7 @@ class ProgramActionsView extends AbstractComponent {
 
     renderButton(onPress, buttonStyle, text, textColor, index) {
         return (
-            <TouchableNativeFeedback onPress={onPress} key={index}>
+            <TouchableNativeFeedback onPress={this.mark(text, onPress)} key={index}>
                 <View style={buttonStyle}>
                     <Text style={{
                         fontSize: Fonts.Medium,

@@ -61,7 +61,7 @@ class ChecklistItemView extends AbstractComponent {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return !_.isNil(nextState.checklistItem);
+        return super.shouldComponentUpdate(nextProps, nextState) &&  !_.isNil(nextState.checklistItem);
     }
 
     render() {

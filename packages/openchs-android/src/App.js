@@ -1,10 +1,10 @@
-import {Text, Alert, NativeModules, View, Clipboard} from "react-native";
+import {Alert, Clipboard, NativeModules, Text, View} from "react-native";
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import PathRegistry from './framework/routing/PathRegistry';
 import BeanRegistry from './framework/bean/BeanRegistry';
 import Realm from 'realm';
-import {Schema, EntityMetaData} from 'openchs-models';
+import {EntityMetaData, Schema} from 'openchs-models';
 import './views';
 import AppStore from './store/AppStore';
 import EntitySyncStatusService from "./service/EntitySyncStatusService";
@@ -14,6 +14,8 @@ import FileSystem from "./model/FileSystem";
 import BackgroundTask from 'react-native-background-task';
 import PruneMedia from "./task/PruneMedia";
 import codePush from "react-native-code-push";
+import {run} from './framework/AutomationUtils';
+import AutomationUtils from "./framework/AutomationUtils";
 
 const {Restart} = NativeModules;
 let routes, beans, reduxStore, db = undefined;
@@ -91,6 +93,7 @@ class App extends Component {
     componentDidMount() {
         const SIX_HOURS = 60 * 60 * 6;
         BackgroundTask.schedule({period: SIX_HOURS});
+        __DEV__ && AutomationUtils.exec();
     }
 
     render() {
@@ -100,6 +103,6 @@ class App extends Component {
     }
 }
 
-let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME };
+let codePushOptions = {checkFrequency: codePush.CheckFrequency.ON_APP_RESUME};
 
 export default codePush(App);

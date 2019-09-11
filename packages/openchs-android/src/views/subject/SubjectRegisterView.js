@@ -93,7 +93,7 @@ class SubjectRegisterView extends AbstractComponent {
 
 
     shouldComponentUpdate(nextProps, nextState) {
-        return !_.isNil(nextState.subject);
+        return super.shouldComponentUpdate(nextProps, nextState) &&  !_.isNil(nextState.subject);
     }
 
     displayMessage(message) {

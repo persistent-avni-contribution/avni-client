@@ -41,7 +41,7 @@ class ChecklistItemActions {
         const service = context.get(ChecklistService);
         service.saveChecklistItem(newState.checklistItem);
 
-        action.cb();
+        setTimeout(()=>action.cb(),0);
         return newState;
     }
 

@@ -49,7 +49,7 @@ class MyDashboardView extends AbstractComponent {
     };
 
     shouldComponentUpdate(nextProps, nextState) {
-        return this.filterStateChanged(this.state, nextState) || this.state.fetchFromDB;
+        return super.shouldComponentUpdate(nextProps, nextState) && this.filterStateChanged(this.state, nextState) || this.state.fetchFromDB;
     }
 
     renderHeader() {

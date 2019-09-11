@@ -68,7 +68,7 @@ export class IndividualAddRelativeActions {
         IndividualAddRelativeActions.handleValidationResults(newState, validationResults);
         if (_.isEmpty(newState.validationResults)) {
             context.get(IndividualRelationshipService).addRelative(newState.individualRelative);
-            action.cb();
+            setTimeout(()=>action.cb(),0);
         }
         return newState;
     }

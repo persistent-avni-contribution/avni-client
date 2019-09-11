@@ -50,7 +50,7 @@ class EntityTypeChoiceState {
 
     entityTypeSelectionConfirmed(action) {
         this.flowState = EntityTypeChoiceState.states.EntityTypeConfirmed;
-        action.cb(this);
+        setTimeout(()=>action.cb(this),0);
         return this;
     }
 

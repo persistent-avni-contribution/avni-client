@@ -82,7 +82,7 @@ class ProgramEncounterCancelView extends AbstractComponent {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return !_.isNil(nextState.programEncounter);
+        return super.shouldComponentUpdate(nextProps, nextState) &&  !_.isNil(nextState.programEncounter);
     }
 
     render() {

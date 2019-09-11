@@ -33,7 +33,7 @@ class IndividualEncounterView extends AbstractComponent {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return !nextState.wizard.isFirstPage();
+        return super.shouldComponentUpdate(nextProps, nextState) &&  !nextState.wizard.isFirstPage();
     }
 
     next() {

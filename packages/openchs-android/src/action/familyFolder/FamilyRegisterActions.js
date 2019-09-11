@@ -65,7 +65,7 @@ export class FamilyRegisterActions {
     static onSave(state, action, context) {
         const newState = state.clone();
         context.get(FamilyService).register(newState.family);
-        action.cb();
+        setTimeout(()=>action.cb(),0);
         return newState;
     }
 }

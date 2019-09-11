@@ -122,6 +122,7 @@ export class IndividualRegisterActions {
     }
 
     static onNext(state, action, context) {
+        console.log('came herecame herecame herecame herecame herecame herecame herecame here', 'NEXTNEXTNEXT');
         return state.clone().handleNext(action, context);
     }
 
@@ -130,9 +131,10 @@ export class IndividualRegisterActions {
     }
 
     static onSave(state, action, context) {
+        console.log('came herecame herecame herecame herecame herecame herecame herecame here', 1);
         const newState = state.clone();
         context.get(IndividualService).register(newState.individual, action.nextScheduledVisits);
-        action.cb();
+        setTimeout(()=>action.cb, 0);
         return newState;
     }
 }

@@ -28,8 +28,8 @@ class SubjectDashboardGeneralTab extends AbstractComponent {
         return super.componentWillMount();
     }
 
-    shouldComponentUpdate(nextProps, state) {
-        return !_.isNil(state.individual);
+    shouldComponentUpdate(nextProps, nextState) {
+        return super.shouldComponentUpdate(nextProps, nextState) &&  !_.isNil(nextState.individual);
     }
 
     renderButton(onPress, buttonStyle, text, textColor, index) {

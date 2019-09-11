@@ -39,11 +39,12 @@ class TextFormElement extends AbstractFormElement {
     }
 
     renderWritable() {
+        const onChangeText = this.mark(this.props.element.name, (text) => this.onInputChange(text));
         return (
             <View style={{flexDirection: 'column', justifyContent: 'flex-start'}}>
                 {this.label}
                 <TextInput {...this.props} style={[Styles.formBodyText, this.props.style]} underlineColorAndroid={this.borderColor} secureTextEntry={this.props.secureTextEntry}
-                           value={_.isNil(this.props.value) ? "" : this.props.value.answer} onChangeText={(text) => this.onInputChange(text)} multiline={false} numberOfLines={this.props.multiline ? 4 : 1}/>
+                           value={_.isNil(this.props.value) ? "" : this.props.value.answer} onChangeText={onChangeText} multiline={false} numberOfLines={this.props.multiline ? 4 : 1}/>
 
                 <ValidationErrorMessage validationResult={this.props.validationResult}/>
             </View>);

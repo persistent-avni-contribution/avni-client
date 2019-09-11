@@ -42,7 +42,7 @@ class ProgramExitView extends AbstractComponent {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return ProgramEnrolmentState.isInitialised(nextState);
+        return super.shouldComponentUpdate(nextProps, nextState) &&  ProgramEnrolmentState.isInitialised(nextState);
     }
 
     onBack() {

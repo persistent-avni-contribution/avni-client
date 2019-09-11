@@ -50,7 +50,7 @@ class IndividualList extends AbstractComponent {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return !General.arraysShallowEquals(this.state.itemsToDisplay, nextState.itemsToDisplay, x=>x.individual.uuid);
+        return super.shouldComponentUpdate(nextProps, nextState) &&  !General.arraysShallowEquals(this.state.itemsToDisplay, nextState.itemsToDisplay, x=>x.individual.uuid);
     }
 
     onHardwareBackPress() {
@@ -95,10 +95,13 @@ class IndividualList extends AbstractComponent {
     render() {
         General.logDebug(this.viewName(), 'render');
         const allUniqueGroups = _.uniqBy(_.map(this.state.itemsToDisplay, ({visitInfo}) => ({groupingBy: visitInfo.groupingBy})), 'groupingBy');
-        const data = allUniqueGroups.map(({groupingBy}) => {
+        const data = allUniqueGroups.map(({groupingBy}, gpkey) => {
             return {
                 title: groupingBy,
-                data: _.get(_.groupBy(this.state.itemsToDisplay, 'visitInfo.groupingBy'), groupingBy, [])
+                data: _.get(_.groupBy(this.state.itemsToDisplay, 'visitInfo.groupingBy'), groupingBy, []).map((x, key)=> {
+                    x.key=`${gpkey}.${key}`;
+                    return x;
+                })
             }
         });
 

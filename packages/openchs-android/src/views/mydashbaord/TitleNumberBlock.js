@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableNativeFeedback} from 'react-native';
+import {StyleSheet, Text, TouchableNativeFeedback, View} from 'react-native';
 import Fonts from '../primitives/Fonts';
-import _ from 'lodash';
 import DGS from '../primitives/DynamicGlobalStyles';
 import AbstractComponent from "../../framework/view/AbstractComponent";
 
@@ -39,6 +38,7 @@ class TitleNumberBlock extends AbstractComponent {
 
     render() {
         const textColor = this.props.highlight ? TitleNumberBlock.styles.highlight : TitleNumberBlock.styles.title;
+        const onPress = this.mark(`${this.I18n.t(this.props.title)}`, this.props.onPress);
         return (
             <TouchableNativeFeedback onPress={this.props.onPress}>
                 <View style={TitleNumberBlock.styles.container}>

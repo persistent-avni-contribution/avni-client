@@ -6,6 +6,7 @@ import MessageService from "../../service/MessageService";
 import General from "../../utility/General";
 import DGS from '../../views/primitives/DynamicGlobalStyles';
 import TypedTransition from "../routing/TypedTransition";
+import AutomationUtils from "../AutomationUtils";
 
 class AbstractComponent extends Component {
     static contextTypes = {
@@ -50,7 +51,7 @@ class AbstractComponent extends Component {
     });
 
     dispatchAction(action, params) {
-        const type = action instanceof Function? action.Id: action;
+        const type = action instanceof Function ? action.Id : action;
         if (General.canLog(General.LogLevel.Debug))
             General.logDebug('AbstractComponent', `Dispatching action: ${JSON.stringify(type)}`);
         return this.context.getStore().dispatch({type, ...params});
@@ -131,6 +132,22 @@ class AbstractComponent extends Component {
 
     viewName() {
         return this.constructor.name;
+    }
+
+    shouldComponentUpdate(a, b) {
+        // if (!_.isNil(a.constructor.path)) {
+        //     const currentRoute = _.last(this.context.navigator().getCurrentRoutes());
+        //     return currentRoute.path === a.constructor.path;
+        // }
+        return true;
+    }
+
+    mark(name, fn) {
+        if (__DEV__) {
+            const currentRoute = _.last(this.context.navigator().getCurrentRoutes());
+            AutomationUtils.mark(`${currentRoute.path.slice(1)}.${name}`, fn);
+        }
+        return fn;
     }
 }
 

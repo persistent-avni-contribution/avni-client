@@ -25,7 +25,7 @@ class ProgramFormComponent extends AbstractComponent {
         context: PropTypes.object.isRequired,
         state: PropTypes.object.isRequired,
         backFunction: PropTypes.func.isRequired,
-        editing: PropTypes.bool.isRequired
+        editing: PropTypes.bool
     };
 
     next() {
@@ -83,7 +83,8 @@ class ProgramFormComponent extends AbstractComponent {
                                       formElementsUserState={this.props.state.formElementsUserState}
                                       filteredFormElements={this.props.state.filteredFormElements}
                                       dataEntryDate={this.props.state.enrolment.enrolmentDateTime}/>
-                    <WizardButtons previous={{
+                    <WizardButtons page={this.props.state.wizard.currentPage}
+                        previous={{
                         visible: !this.props.state.wizard.isFirstPage(),
                         func: () => this.props.previous(),
                         label: this.I18n.t('previous')

@@ -53,7 +53,7 @@ class IndividualRegisterView extends AbstractComponent {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextState.wizard.isNonFormPage();
+        return super.shouldComponentUpdate(nextProps, nextState) &&  nextState.wizard.isNonFormPage();
     }
 
     displayMessage(message) {
@@ -100,7 +100,7 @@ class IndividualRegisterView extends AbstractComponent {
                             onLowestLevel={(lowestSelectedAddresses) =>
                                 this.dispatchAction(Actions.REGISTRATION_ENTER_ADDRESS_LEVEL, {value: _.head(lowestSelectedAddresses)})}
                         />
-                        <WizardButtons
+                        <WizardButtons page={'DEFAULT'}
                             next={{func: () => IndividualRegisterViewsMixin.next(this), label: this.I18n.t('next')}}/>
                     </View>
                 </CHSContent>

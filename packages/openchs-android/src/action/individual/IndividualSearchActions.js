@@ -66,7 +66,7 @@ export class IndividualSearchActions {
         const searchResponse = individualService.search(newState.searchCriteria);
         const individualSearchResults = searchResponse.results;
         const count = searchResponse.count;
-        action.cb(individualSearchResults, count);
+        setTimeout(()=>action.cb(individualSearchResults, count),0);
         return newState;
     };
 
